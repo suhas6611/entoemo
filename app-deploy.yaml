@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: java-app-dep
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      env: dev
+  template:
+    metadata:
+      name: java-app-pod
+      labels:
+        env: dev
+    spec:
+#      nodeSelector:
+#       kubernetes.io/os: linux
+      containers:
+      - name: java-app
+        image: salilkul87/myjava-image:test
+        ports:
+        - containerPort: 80
+          protocol: TCP
